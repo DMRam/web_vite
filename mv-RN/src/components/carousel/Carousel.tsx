@@ -12,28 +12,8 @@ import './carousel.css';
 // Import required modules
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 import { imageList } from '../../assets/images/carousel';
+import { WorkDoneModal } from '../modals/WorkDoneModal';
 
-// Modal component
-interface ModalProps {
-    image: string;
-    description: string;
-    isOpen: boolean;
-    onClose: () => void;
-}
-
-const Modal: React.FC<ModalProps> = ({ image, description, isOpen, onClose }) => {
-    if (!isOpen) return null;
-
-    return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <button className="modal-close" onClick={onClose}>Close</button>
-                <img src={image} alt="Modal Content" className="modal-image" />
-                <p className="modal-description">{description}</p>
-            </div>
-        </div>
-    );
-};
 
 export const Carousel = () => {
 
@@ -41,7 +21,7 @@ export const Carousel = () => {
     const [modalImage, setModalImage] = useState('');
     const [modalDescription, setModalDescription] = useState('');
 
-    
+
     const handleImageClick = (image: string, description: string) => {
         setModalImage(image);
         setModalDescription(description);
@@ -69,26 +49,27 @@ export const Carousel = () => {
                 }}
                 pagination={true}
                 autoplay={{
-                    delay: 3000, // Set the delay (in ms) between slides
+                    delay: 3500, // Set the delay (in ms) between slides
                     disableOnInteraction: false, // Autoplay will not stop when the user interacts with the carousel
                 }}
                 modules={[EffectCoverflow, Pagination, Autoplay]}
-                className="mySwiper"
+                className="w-full max-w-5xl mx-auto"
             >
                 {imageList.map((imageData, index) => (
                     <SwiperSlide key={index}>
                         <img
                             src={imageData.src}
                             alt={imageData.alt}
-                            className="w-full h-64 object-cover rounded-lg hover:scale-105"
+                            className="w-full h-84 object-cover rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-110"
                             onClick={() => handleImageClick(imageData.src, imageData.description)}
                         />
+
                     </SwiperSlide>
                 ))}
             </Swiper>
 
             {/* Modal */}
-            <Modal
+            <WorkDoneModal
                 image={modalImage}
                 description={modalDescription}
                 isOpen={modalOpen}

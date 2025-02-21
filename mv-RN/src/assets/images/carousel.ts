@@ -6,7 +6,7 @@ export const imageList = [
         description: "Renovation - A perfect transformation after construction work.",
     },
     {
-        src: "https://www.ovonetwork.com/blog/wp-content/uploads/2022/06/Screenshot-2022-06-16-11.24.43.png",
+        src: "https://www.dispano.fr/sites/default/files/2022-07/terrasse-composite-avantages-inconvenients-banniere-dispano.jpg",
         alt: "Cleaning",
         description: "Cleaning - A clean home after a renovation project.",
     },
